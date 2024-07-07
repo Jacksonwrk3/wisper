@@ -4,9 +4,9 @@
  * - At least 1 uppercase letter
  * - At least 1 symbol
  * @param {string} password - The password to check
- * @returns {string | boolean} If password is valid returns true. Else returns string error message
+ * @returns {string | true} If password is valid returns true. Else returns string error message
  */
-const isValidPassword = (password: string) => {
+const isValidPassword = (password: string): string | true => {
   // Check if the password has at least 9 characters
   if (password.length < 9) {
     return "Password must contain at least 9 characters";

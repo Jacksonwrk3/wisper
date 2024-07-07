@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * Props for the Button component
  * @typedef {Object} ButtonProps
@@ -13,13 +15,13 @@ type ButtonProps = {
  * @param {ButtonProps} props - The props for the Button component
  * @returns {JSX.Element} The Button component
  */
-const Button: React.FC<ButtonProps> = (props) => {
-  if (props.variant === "primary") {
-    return <button className="bg-amber-800 p-3">{props.children}</button>;
-  } else if (props.variant === "secondary") {
-    return (
-      <button className="bg-amber-800 opacity-50 p-3">{props.children}</button>
-    );
+const Button: React.FC<ButtonProps> = ({ children, variant }) => {
+  if (variant === "primary") {
+    return <button className="bg-amber-800 p-3">{children}</button>;
+  } else if (variant === "secondary") {
+    return <button className="bg-amber-800 opacity-50 p-3">{children}</button>;
+  } else {
+    return null; // Handle unexpected variants
   }
 };
 

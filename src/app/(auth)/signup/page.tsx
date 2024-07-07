@@ -11,6 +11,8 @@ import {
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -51,12 +53,38 @@ const SignUp = () => {
       }, 500);
     }
   };
+
+  /**
+   * @description Sets the username state to the username input value
+   * @param {React.ChangeEvent<HTMLInputElement>} event
+   * @return {void}
+   */
+  const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    } else {
+      timeoutRef.current = setTimeout(() => {
+        if (username.length < 3) {
+          setUsernameError("Username must be at least 3 characters");
+        }
+      }, 500);
+    }
+  };
   return (
     <div>
       SignUp Page
       <label htmlFor="email">Email</label>
       <input id="email" type="email" value={email} onChange={emailOnChange} />
       {emailError && <span>{emailError}</span>}
+      <label htmlFor="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        value={username}
+        onChange={onUsernameChange}
+      />
+      {usernameError && <span>{usernameError}</span>}
       <label htmlFor="password">Password</label>
       <input
         id="password"
