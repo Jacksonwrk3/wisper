@@ -25,3 +25,5 @@ const isValidUsername = (username: string): string | true => {
 
   return true;
 };
+
+export default isValidUsername;

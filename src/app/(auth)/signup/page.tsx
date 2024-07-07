@@ -1,13 +1,12 @@
+"use client";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import {
   isValidEmail,
   isValidPassword,
+  isValidUsername,
 } from "../../../../util/form-validation";
-/**
- * @description The SignUp page
- * @returns {JSX.Element} The SignUp page
- */
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -15,84 +14,99 @@ const SignUp = () => {
   const [usernameError, setUsernameError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  /**
-   * @description Sets the email state to the email input value
-   * @param {React.ChangeEvent<HTMLInputElement>} event
-   * @returns {void}
-   */
+
+  const emailTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const usernameTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const passwordTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const emailOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    const newEmail = event.target.value;
+    setEmail(newEmail);
 
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    } else {
-      timeoutRef.current = setTimeout(() => {
-        if (!isValidEmail(email)) {
-          setEmailError("Please enter a valid Email");
-        }
-      }, 500);
+    if (emailTimeoutRef.current !== null) {
+      clearTimeout(emailTimeoutRef.current);
     }
+
+    emailTimeoutRef.current = setTimeout(() => {
+      const isValid = isValidEmail(newEmail);
+      if (!isValid) {
+        setEmailError("Please enter a valid Email");
+      } else {
+        setEmailError(""); // Clear error when valid
+      }
+    }, 500);
   };
 
-  /**
-   * @description Sets the password state to the password input value
-   * @param {React.ChangeEvent<HTMLInputElement>} event
-   * @return {void}
-   */
-  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    } else {
-      timeoutRef.current = setTimeout(() => {
-        const isValid = isValidPassword(password);
-        if (isValid !== true) {
-          setPasswordError(isValid);
-        }
-      }, 500);
-    }
-  };
-
-  /**
-   * @description Sets the username state to the username input value
-   * @param {React.ChangeEvent<HTMLInputElement>} event
-   * @return {void}
-   */
   const onUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    } else {
-      timeoutRef.current = setTimeout(() => {
-        if (username.length < 3) {
-          setUsernameError("Username must be at least 3 characters");
-        }
-      }, 500);
+    const newUsername = event.target.value;
+    setUsername(newUsername);
+
+    if (usernameTimeoutRef.current !== null) {
+      clearTimeout(usernameTimeoutRef.current);
     }
+
+    usernameTimeoutRef.current = setTimeout(() => {
+      const isValid = isValidUsername(newUsername);
+      if (isValid === true) {
+        setUsernameError("");
+      } else {
+        setUsernameError(isValid);
+      }
+    }, 500);
   };
+
+  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+
+    if (passwordTimeoutRef.current !== null) {
+      clearTimeout(passwordTimeoutRef.current);
+    }
+
+    passwordTimeoutRef.current = setTimeout(() => {
+      const isValid = isValidPassword(newPassword);
+      if (isValid !== true) {
+        setPasswordError(isValid);
+      } else {
+        setPasswordError(""); // Clear error when valid
+      }
+    }, 500);
+  };
+
   return (
-    <div>
-      SignUp Page
+    <div className="flex flex-col space-y-4">
+      <h2>SignUp Page</h2>
+
       <label htmlFor="email">Email</label>
-      <input id="email" type="email" value={email} onChange={emailOnChange} />
+      <input
+        className="border-2 border-red-300"
+        id="email"
+        type="email"
+        value={email}
+        onChange={emailOnChange}
+      />
       {emailError && <span>{emailError}</span>}
+
       <label htmlFor="username">Username</label>
       <input
+        className="border-2 border-red-300"
         id="username"
         type="text"
         value={username}
         onChange={onUsernameChange}
       />
       {usernameError && <span>{usernameError}</span>}
+
       <label htmlFor="password">Password</label>
       <input
+        className="border-2 border-red-300"
         id="password"
         type="password"
         value={password}
         onChange={onPasswordChange}
       />
       {passwordError && <span>{passwordError}</span>}
+
       <Link href="/login">Already have an account? Login</Link>
     </div>
   );

@@ -1,3 +1,4 @@
 import isValidEmail from "./isValidEmail";
 import isValidPassword from "./isValidPassword";
-export { isValidEmail, isValidPassword };
+import isValidUsername from "./isValidUsername";
+export { isValidEmail, isValidPassword, isValidUsername };
