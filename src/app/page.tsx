@@ -1,6 +1,6 @@
 import Button from "./components/Button/index.client";
 import Link from "next/link";
-export default function Home() {
+export default function LandingPage() {
   return (
     <main>
       Landing Page
