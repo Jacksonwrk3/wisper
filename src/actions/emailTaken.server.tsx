@@ -12,11 +12,12 @@ const emailTaken = async (email: string) => {
     .select("email")
     .eq("email", email)
     .maybeSingle();
-  console.log("data", data);
+  console.log(data);
   if (data === null) {
     return false;
   }
   if (data) {
+    console.log("returning true");
     return true;
   }
 };

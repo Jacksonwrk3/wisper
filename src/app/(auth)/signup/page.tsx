@@ -34,12 +34,12 @@ const SignUp = () => {
       clearTimeout(emailTimeoutRef.current);
     }
 
-    emailTimeoutRef.current = setTimeout(() => {
+    emailTimeoutRef.current = setTimeout(async () => {
       const isValid = isValidEmail(newEmail);
-      const emailAvailable = emailTaken(newEmail);
+      const emailNotAvailable = await emailTaken(newEmail);
       if (!isValid) {
         setEmailError("Please enter a valid Email");
-      } else if (!emailAvailable) {
+      } else if (emailNotAvailable) {
         setEmailError("Invalid Email. Email already exists");
       } else {
         setEmailError(""); // Clear error when valid
