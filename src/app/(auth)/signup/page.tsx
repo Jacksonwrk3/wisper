@@ -14,11 +14,17 @@ const SignUp = () => {
   const [usernameError, setUsernameError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const emailTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const usernameTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const passwordTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const toggleShowPassword = () => {
+    setShowPassword((prevState) => {
+      return !prevState;
+    });
+  };
   const emailOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = event.target.value;
     setEmail(newEmail);
@@ -101,10 +107,11 @@ const SignUp = () => {
       <input
         className="border-2 border-red-300"
         id="password"
-        type="password"
+        type={showPassword ? "text" : "password"}
         value={password}
         onChange={onPasswordChange}
       />
+      <button onClick={toggleShowPassword}>Show Password</button>
       {passwordError && <span>{passwordError}</span>}
 
       <Link href="/login">Already have an account? Login</Link>
