@@ -27,10 +27,6 @@ const createAccount = async (
   });
 
   if (error !== null) {
-    let errorStatus = error.status;
-    if (typeof error.status !== "number" && error.status !== undefined) {
-      errorStatus = error.status;
-    }
     throw new Error(
       "There was an error creating your account. Please try again."
     );

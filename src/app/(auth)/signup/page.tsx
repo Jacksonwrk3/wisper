@@ -7,8 +7,7 @@ import {
   isValidPassword,
   isValidUsername,
 } from "../../../../util/form-validation";
-import createAccount from "@/actions/createAccount.server";
-
+import { createAccount, emailTaken } from "@/actions/index";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -37,8 +36,11 @@ const SignUp = () => {
 
     emailTimeoutRef.current = setTimeout(() => {
       const isValid = isValidEmail(newEmail);
+      const emailAvailable = emailTaken(newEmail);
       if (!isValid) {
         setEmailError("Please enter a valid Email");
+      } else if (!emailAvailable) {
+        setEmailError("Invalid Email. Email already exists");
       } else {
         setEmailError(""); // Clear error when valid
       }
@@ -87,7 +89,11 @@ const SignUp = () => {
       <form
         className="flex flex-col space-y-4"
         action={() => {
-          createAccount(email, username, password);
+          try {
+            createAccount(email, username, password);
+          } catch (error) {
+            console.error("error", error);
+          }
         }}
       >
         <label htmlFor="email">Email</label>
