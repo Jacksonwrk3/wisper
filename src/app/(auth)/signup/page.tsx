@@ -7,6 +7,7 @@ import {
   isValidPassword,
   isValidUsername,
 } from "../../../../util/form-validation";
+import createAccount from "@/actions/createAccount.server";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -83,7 +84,12 @@ const SignUp = () => {
   return (
     <div className="flex flex-col space-y-4">
       <h2>SignUp Page</h2>
-      <form className="flex flex-col space-y-4">
+      <form
+        className="flex flex-col space-y-4"
+        action={() => {
+          createAccount(email, username, password);
+        }}
+      >
         <label htmlFor="email">Email</label>
         <input
           className="border-2 border-red-300"

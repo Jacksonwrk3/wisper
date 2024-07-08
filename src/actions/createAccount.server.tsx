@@ -1,6 +1,16 @@
 "use server";
 import supabase from "../../util/supabase/index";
 import { RedirectType, redirect } from "next/navigation";
+
+/**
+ * @description Server action to create a new account
+ * @param {string} email
+ * @param {string} username
+ * @param {string} password
+ * @returns {Promise<void>} - Promise that resolves when the account is created
+ * - Redirects to /home on success
+ * @throws {Error} - Throws error if there was an issue creating the account
+ */
 const createAccount = async (
   email: string,
   username: string,
