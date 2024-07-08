@@ -1,4 +1,4 @@
-import Button from "../app/components/Button/index";
+import Button from "./components/Button/index.client";
 import Link from "next/link";
 export default function Home() {
   return (

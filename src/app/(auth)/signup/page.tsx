@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useRef } from "react";
+import Button from "../../components/Button/index.client";
 import {
   isValidEmail,
   isValidPassword,
@@ -82,39 +83,42 @@ const SignUp = () => {
   return (
     <div className="flex flex-col space-y-4">
       <h2>SignUp Page</h2>
+      <form className="flex flex-col space-y-4">
+        <label htmlFor="email">Email</label>
+        <input
+          className="border-2 border-red-300"
+          id="email"
+          type="text"
+          value={email}
+          onChange={emailOnChange}
+        />
+        {emailError && <span>{emailError}</span>}
 
-      <label htmlFor="email">Email</label>
-      <input
-        className="border-2 border-red-300"
-        id="email"
-        type="email"
-        value={email}
-        onChange={emailOnChange}
-      />
-      {emailError && <span>{emailError}</span>}
+        <label htmlFor="username">Username</label>
+        <input
+          className="border-2 border-red-300"
+          id="username"
+          type="text"
+          value={username}
+          onChange={onUsernameChange}
+        />
+        {usernameError && <span>{usernameError}</span>}
 
-      <label htmlFor="username">Username</label>
-      <input
-        className="border-2 border-red-300"
-        id="username"
-        type="text"
-        value={username}
-        onChange={onUsernameChange}
-      />
-      {usernameError && <span>{usernameError}</span>}
-
-      <label htmlFor="password">Password</label>
-      <input
-        className="border-2 border-red-300"
-        id="password"
-        type={showPassword ? "text" : "password"}
-        value={password}
-        onChange={onPasswordChange}
-      />
-      <button onClick={toggleShowPassword}>Show Password</button>
-      {passwordError && <span>{passwordError}</span>}
-
-      <Link href="/login">Already have an account? Login</Link>
+        <label htmlFor="password">Password</label>
+        <input
+          className="border-2 border-red-300"
+          id="password"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={onPasswordChange}
+        />
+        <button type="button" onClick={toggleShowPassword}>
+          Show Password
+        </button>
+        {passwordError && <span>{passwordError}</span>}
+        <Button variant="primary">Create Account</Button>
+        <Link href="/login">Already have an account? Login</Link>
+      </form>
     </div>
   );
 };
