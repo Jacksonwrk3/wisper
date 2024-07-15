@@ -16,7 +16,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const [hasSignUpError, sethasSignUpError] = useState(false);
   const emailTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const usernameTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const passwordTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -92,10 +92,11 @@ const SignUp = () => {
           try {
             createAccount(email, username, password);
           } catch (error) {
-            console.error("error", error);
+            sethasSignUpError(true);
           }
         }}
       >
+        {hasSignUpError && <div>Something went wrong. Please try again</div>}
         <label htmlFor="email">Email</label>
         <input
           className="border-2 border-red-300"

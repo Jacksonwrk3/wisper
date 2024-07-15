@@ -1,0 +1,21 @@
+import supabase from "../../util/supabase/index";
+/**
+ * @description Signs in a user with email and password using supabase
+ * @param {string} email
+ * @param {string }password
+ * @returns {object | Error} - Returns user and session data if successful, throws error if not
+ */
+const signIn = async (email: string, password: string) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+
+  if (data.user && data.session) {
+    return data;
+  } else {
+    throw new Error("There was an error signing in. Please try again.");
+  }
+};
+
+export default signIn;
