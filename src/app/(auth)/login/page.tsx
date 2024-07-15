@@ -2,7 +2,7 @@
 import signIn from "@/actions/signin.server";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 /**
  * @description Login Page
  * @TODO Login page currently uses useRouter and routes on client side, but signUp page uses redirect on server side.
@@ -73,6 +73,7 @@ const Login = () => {
         </button>
         <button type="submit">Log in </button>
       </form>
+      <Link href="/signup">Don't have an accout? Sign up</Link>
     </div>
   );
 };
