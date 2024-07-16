@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SessionContextProvider } from "../context/SessionContext.client";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SessionContextProvider>{children}</SessionContextProvider>
+      </body>
     </html>
   );
 }
