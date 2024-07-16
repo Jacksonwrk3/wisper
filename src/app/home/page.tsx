@@ -1,6 +1,6 @@
 "use client";
 import supabase from "../../../util/supabase/index";
-import { getSession } from "../../actions/index";
+import { signOut } from "../../actions/index";
 import { useState, useEffect } from "react";
 const Home = () => {
   const [signOutError, setSignOutError] = useState<null | string>(null);
