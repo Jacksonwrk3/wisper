@@ -3,6 +3,7 @@ import supabase from "../../util/supabase/index";
 import { RedirectType, redirect } from "next/navigation";
 
 /**
+ * @function createAccount
  * @description Server action to create a new account
  * @param {string} email
  * @param {string} username

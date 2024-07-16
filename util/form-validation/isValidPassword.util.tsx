@@ -1,4 +1,5 @@
 /**
+ * @function isValidPassword
  * @description Checks if the password is valid
  * - At least 9 characters
  * - At least 1 uppercase letter

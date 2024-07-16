@@ -1,4 +1,5 @@
 /**
+ * @function isValidEmail
  * @description Checks if the email is valid
  * @param {string} email - The email to check
  * @return {boolean} Whether the email is valid

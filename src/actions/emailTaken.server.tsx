@@ -1,6 +1,7 @@
 "use server";
 import supabase from "../../util/supabase/index";
 /**
+ * @function emailTaken
  * @description Queries public.users to check if the email exists
  * @param {string} email - The email to check
  * @returns {boolean} Whether the email exists

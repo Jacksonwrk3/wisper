@@ -1,4 +1,5 @@
 /**
+ * @function isValidUsername
  * @description Checks if the username is valid
  * - At least 3 characters
  * - No special characters EXCEPT - and _

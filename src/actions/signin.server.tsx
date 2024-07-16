@@ -1,8 +1,10 @@
 import supabase from "../../util/supabase/index";
 /**
+ * @function signIn
  * @description Signs in a user with email and password using supabase
  * @param {string} email
  * @param {string }password
+ * @throws {Error} - Throws error if there was an error signing in
  * @returns {object | Error} - Returns user and session data if successful, throws error if not
  */
 const signIn = async (email: string, password: string) => {
