@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useState, useRef } from "react";
-import Button from "../../components/Button/index.client";
+import Button from "../../../components/Button/index.client";
 import {
   isValidEmail,
   isValidPassword,
   isValidUsername,
-} from "../../../../util/form-validation";
+} from "../../../../../util/form-validation/index";
 import { createAccount, emailTaken } from "@/actions/index";
 const SignUp = () => {
   const [email, setEmail] = useState("");

@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/preset-typescript": "^7.24.7",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/gotrue-js": "^2.64.4",
     "@supabase/supabase-js": "^2.44.2",
     "next": "14.2.4",
     "react": "^18",

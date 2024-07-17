@@ -1,7 +1,9 @@
 "use client";
 import { signIn } from "@/actions/index";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import getSession from "../../../../../util/supabase/getSession";
 import { useRouter } from "next/navigation";
+import { SessionContext } from "@/context/SessionContext.client";
 import Link from "next/link";
 /**
  * @description Login Page
@@ -15,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [hasLoginError, setHasLoginError] = useState(false);
-
+  const { setSession } = useContext(SessionContext);
   const router = useRouter();
   const toggleShowPassword = () => {
     setShowPassword((prevState: boolean) => {
@@ -30,14 +32,31 @@ const Login = () => {
   const passwordOnChange = (password: string) => {
     setPassword(password);
   };
+
   return (
     <div className="flex-col space-y-4">
       Login Page
       <form
         className="flex-col space-y-4"
-        action={() => {
+        action={async () => {
           try {
             signIn(email, password);
+            try {
+              const data = await getSession();
+              setSession((prevState) => {
+                return {
+                  ...prevState,
+                  session: data.session,
+                };
+              });
+            } catch (error) {
+              setSession((prevState) => {
+                return {
+                  ...prevState,
+                  session: "Error",
+                };
+              });
+            }
             router.replace("/home");
           } catch (error) {
             setHasLoginError(true);
@@ -52,6 +71,7 @@ const Login = () => {
           name="email"
           id="email"
           className="border-2 border-blue-300"
+          value={email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const newEmail = e.target.value;
             emailOnChange(newEmail);
@@ -61,6 +81,7 @@ const Login = () => {
         <input
           name="password"
           id="password"
+          value={password}
           type={showPassword ? "text" : "password"}
           className="border-2 border-red-300"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,6 +94,7 @@ const Login = () => {
         </button>
         <button type="submit">Log in </button>
       </form>
+      <Link href="/password-recovery">Home</Link>
       <Link href="/signup">Don't have an accout? Sign up</Link>
     </div>
   );
