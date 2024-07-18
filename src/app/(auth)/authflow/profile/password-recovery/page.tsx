@@ -1,3 +1,4 @@
+"use client";
 import { isValidEmail } from "../../../../../../util/form-validation/index";
 import { useState, useRef } from "react";
 import { recoverPassword } from "@/actions/index";

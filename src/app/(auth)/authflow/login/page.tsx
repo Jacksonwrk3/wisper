@@ -94,8 +94,10 @@ const Login = () => {
         </button>
         <button type="submit">Log in </button>
       </form>
-      <Link href="/password-recovery">Home</Link>
-      <Link href="/signup">Don't have an accout? Sign up</Link>
+      <div className="flex flex-col space-y-4">
+        <Link href="/password-recovery">Forgot Password? Recover.</Link>
+        <Link href="/signup">Don't have an accout? Sign up</Link>
+      </div>
     </div>
   );
 };
