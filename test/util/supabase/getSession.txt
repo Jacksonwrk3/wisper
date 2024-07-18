@@ -1,0 +1,2 @@
+import { getSession } from "../../util/supabase/index";
+describe("getSession", () => {});

@@ -1,4 +1,4 @@
-import { isValidPassword } from "../../util/form-validation";
+import { isValidPassword } from "../../../util/form-validation";
 
 describe("isValidPassword", () => {
   it("should return 'Password must contain at least 9 characters' if password is less than 9 characters", () => {

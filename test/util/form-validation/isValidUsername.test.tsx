@@ -1,4 +1,4 @@
-import { isValidUsername } from "../../util/form-validation";
+import { isValidUsername } from "../../../util/form-validation";
 
 describe("isValidUsername", () => {
   it("Should return 'Username must be at least 3 characters long.' if username is less than 3 characters", () => {

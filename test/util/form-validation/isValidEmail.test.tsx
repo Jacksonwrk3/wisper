@@ -1,4 +1,4 @@
-import { isValidEmail } from "../../util/form-validation";
+import { isValidEmail } from "../../../util/form-validation";
 
 describe("isValidEmail", () => {
   it("Should return 'Please enter a valid Email' if email is not valid", () => {
