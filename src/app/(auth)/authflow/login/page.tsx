@@ -9,7 +9,7 @@ import Link from "next/link";
  * @description Login Page
  * @TODO Login page currently uses useRouter and routes on client side, but signUp page uses redirect on server side.
  * - Refactor to use redirect on server side for both login and signUp
- * - Login currently facing redirect errors due to try catch block for some reason
+ * - Login currently facing redirect error due to try catch block for some reason
  * @returns {JSX.Element} - Login page
  */
 const Login = () => {
