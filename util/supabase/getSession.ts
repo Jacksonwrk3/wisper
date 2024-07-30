@@ -1,6 +1,7 @@
 import supabase from "../supabase/index";
 
 /**
+ * @deprecated This function is deprecated. Use supabase.auth.getSession() instead in client.
  * @function getSession
  * @description Gets the session object from supabase (client side)
  * @important This function should only be used on the client side. It is not safe on server-side

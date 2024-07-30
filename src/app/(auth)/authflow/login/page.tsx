@@ -1,10 +1,11 @@
 "use client";
 import { signIn } from "@/actions/index";
 import { useState, useContext } from "react";
-import getSession from "../../../../../util/supabase/getSession";
+import supabase from "../../../../../util/supabase";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/context/SessionContext.client";
 import Link from "next/link";
+import { throws } from "assert";
 /**
  * @description Login Page
  * @TODO Login page currently uses useRouter and routes on client side, but signUp page uses redirect on server side.
@@ -40,25 +41,29 @@ const Login = () => {
         className="flex-col space-y-4"
         action={async () => {
           try {
-            signIn(email, password);
-            try {
-              const data = await getSession();
-              setSession((prevState) => {
-                return {
-                  ...prevState,
-                  session: data.session,
-                };
-              });
-            } catch (error) {
-              setSession((prevState) => {
-                return {
-                  ...prevState,
-                  session: "Error",
-                };
-              });
-            }
-            router.replace("/home");
+            signIn(email, password).then(async () => {
+              const { error, data } = await supabase.auth.getSession();
+              if (data.session) {
+                setSession((prevState) => {
+                  return {
+                    ...prevState,
+                    session: data.session,
+                  };
+                });
+                router.replace("/home");
+              } else if (error) {
+                throw new Error(
+                  "There was an error signing in. Please try again."
+                );
+              }
+            });
           } catch (error) {
+            setSession((prevState) => {
+              return {
+                ...prevState,
+                session: "Error",
+              };
+            });
             setHasLoginError(true);
           }
         }}
