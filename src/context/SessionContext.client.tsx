@@ -62,7 +62,6 @@ const SessionContextProvider: React.FC<SessionContextProviderProps> = (
     // Call sbGetSession function when component mounts
     sbGetSession();
   }, []);
-  console.log("session provider", session);
   return (
     <SessionContext.Provider value={session}>
       {props.children}

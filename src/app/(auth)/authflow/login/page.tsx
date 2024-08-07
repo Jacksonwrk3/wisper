@@ -101,7 +101,7 @@ const Login = () => {
       </form>
       <div className="flex flex-col space-y-4">
         <Link href="/password-recovery">Forgot Password? Recover.</Link>
-        <Link href="/signup">Don't have an accout? Sign up</Link>
+        <Link href="/authflow/signup">Don't have an accout? Sign up</Link>
       </div>
     </div>
   );
