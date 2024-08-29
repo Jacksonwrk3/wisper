@@ -4,8 +4,14 @@ import { signOut } from "../../actions/index";
 import { SessionContext } from "../../context/SessionContext.client";
 import { useRouter } from "next/navigation";
 import { useState, useContext, useEffect } from "react";
+import Modal from "../components/Modal/index.client";
 const Home = () => {
   const [signOutError, setSignOutError] = useState<null | string>(null);
+  const [displayModal, setDisplayModal] = useState(false);
+
+  const toggleModal = () => {
+    setDisplayModal(!displayModal);
+  };
   const { session, setSession } = useContext(SessionContext);
   const router = useRouter();
   useEffect(() => {
@@ -17,7 +23,7 @@ const Home = () => {
     }
   }, [session]);
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 w-screen h-screen relative">
       Home Page
       {signOutError && <p>{signOutError}</p>}
       <button
@@ -40,6 +46,9 @@ const Home = () => {
       >
         Sign Out
       </button>
+      <Modal onClose={toggleModal} isOpen={displayModal}>
+        Hello
+      </Modal>
     </div>
   );
 };
