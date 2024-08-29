@@ -12,10 +12,11 @@ const loginWithGoogle = async () => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `http://localhost:3000/home`,
+      redirectTo: `http://localhost:3000/`,
     },
   });
   if (data.url) {
+    console.log(data);
     redirect(data.url);
   }
   if (error) {

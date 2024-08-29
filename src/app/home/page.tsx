@@ -9,7 +9,7 @@ const Home = () => {
   const { session, setSession } = useContext(SessionContext);
   const router = useRouter();
   useEffect(() => {
-    console.log("session", session);
+    console.log("session1", session);
     if (session === null) {
       router.replace("/authflow/login");
     } else if (session === "Error") {

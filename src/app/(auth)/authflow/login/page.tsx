@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "@/actions/index";
+import { signIn, signinWithGoogle } from "@/actions/index";
 import { useState, useContext } from "react";
 import supabase from "../../../../../util/supabase";
 import { useRouter } from "next/navigation";
@@ -99,9 +99,18 @@ const Login = () => {
         </button>
         <button type="submit">Log in </button>
       </form>
-      <div className="flex flex-col space-y-4">
-        <Link href="/password-recovery">Forgot Password? Recover.</Link>
-        <Link href="/authflow/signup">Don't have an accout? Sign up</Link>
+      <div>
+        <button
+          onClick={() => {
+            signinWithGoogle();
+          }}
+        >
+          Sign in with Google
+        </button>
+        <div className="flex flex-col space-y-4">
+          <Link href="/password-recovery">Forgot Password? Recover.</Link>
+          <Link href="/authflow/signup">Don't have an accout? Sign up</Link>
+        </div>
       </div>
     </div>
   );
