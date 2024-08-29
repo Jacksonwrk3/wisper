@@ -3,6 +3,7 @@ import supabase from "../../util/supabase/index";
 import { redirect } from "next/navigation";
 /**
  * @TODO Signin Error with Supbase. Signing in with Google doesn't give you a username. Database requires a username. Find a solution.
+ * @TODO If account is created with google first, you cannot create a new account with with regular credentials. Find a solution.
  * @description Login with Google Server Action
  * @throws {Error} - Throws error if there was an error signing in with Google
  * @returns {void}
