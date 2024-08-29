@@ -5,12 +5,12 @@ import supabase from "../../../../../util/supabase";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/context/SessionContext.client";
 import Link from "next/link";
-import { throws } from "assert";
 /**
  * @description Login Page
  * @TODO Login page currently uses useRouter and routes on client side, but signUp page uses redirect on server side.
  * - Refactor to use redirect on server side for both login and signUp
  * - Login currently facing redirect error due to try catch block for some reason
+ * - Give better error messages to user. Currently shows generic error message, for every single error.
  * @returns {JSX.Element} - Login page
  */
 const Login = () => {
@@ -52,6 +52,8 @@ const Login = () => {
                 });
                 router.replace("/home");
               } else if (error) {
+                if (error !== null) {
+                }
                 throw new Error(
                   "There was an error signing in. Please try again."
                 );

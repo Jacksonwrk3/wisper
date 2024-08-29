@@ -16,7 +16,11 @@ const signIn = async (email: string, password: string) => {
   if (data.user && data.session) {
     return data;
   } else {
-    throw new Error("There was an error signing in. Please try again.");
+    if (error !== null) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("There was an error signing in. Please try again.");
+    }
   }
 };
 

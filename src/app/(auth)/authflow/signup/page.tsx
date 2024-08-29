@@ -140,7 +140,7 @@ const SignUp = () => {
       >
         Sign up with google
       </Button>
-      <Link href="/login">Already have an account? Login</Link>
+      <Link href="/authflow/login">Already have an account? Login</Link>
     </div>
   );
 };
