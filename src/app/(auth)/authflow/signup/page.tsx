@@ -7,7 +7,8 @@ import {
   isValidPassword,
   isValidUsername,
 } from "../../../../../util/form-validation/index";
-import { createAccount, emailTaken } from "@/actions/index";
+import { createAccount, emailTaken, loginWithGoogle } from "@/actions/index";
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -130,8 +131,16 @@ const SignUp = () => {
         </button>
         {passwordError && <span>{passwordError}</span>}
         <Button variant="primary">Create Account</Button>
-        <Link href="/login">Already have an account? Login</Link>
       </form>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          loginWithGoogle();
+        }}
+      >
+        Sign up with google
+      </Button>
+      <Link href="/login">Already have an account? Login</Link>
     </div>
   );
 };

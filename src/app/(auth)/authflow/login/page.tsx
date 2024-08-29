@@ -1,5 +1,5 @@
 "use client";
-import { signIn, signinWithGoogle } from "@/actions/index";
+import { signIn, loginWithGoogle } from "@/actions/index";
 import { useState, useContext } from "react";
 import supabase from "../../../../../util/supabase";
 import { useRouter } from "next/navigation";
@@ -102,7 +102,7 @@ const Login = () => {
       <div>
         <button
           onClick={() => {
-            signinWithGoogle();
+            loginWithGoogle();
           }}
         >
           Sign in with Google

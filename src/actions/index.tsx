@@ -2,7 +2,7 @@ import createAccount from "./createAccount.server";
 import emailTaken from "./emailTaken.server";
 import signIn from "./signin.server";
 import signOut from "./signOut.server";
-import signinWithGoogle from "./loginWithGoogle.server";
+import loginWithGoogle from "./loginWithGoogle.server";
 import recoverPassword from "./recoverPassword.server";
 export {
   createAccount,
@@ -10,5 +10,5 @@ export {
   signIn,
   signOut,
   recoverPassword,
-  signinWithGoogle,
+  loginWithGoogle,
 };
