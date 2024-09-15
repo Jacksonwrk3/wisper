@@ -1,4 +1,4 @@
-import supabase from "../../util/supabase/index";
+import supabase from "../../util/supabase/index.client";
 /**
  * @function signOut
  * @description Signs out the current user

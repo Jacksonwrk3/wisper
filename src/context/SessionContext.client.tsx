@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useState, useEffect } from "react";
 import { Session } from "@supabase/gotrue-js/src/lib/types";
-import supabase from "../../util/supabase/index";
+import supabase from "../../util/supabase/index.client";
 /**
  * @type {React.FC<SessionContextProviderProps>}
  * @description Session context provider props

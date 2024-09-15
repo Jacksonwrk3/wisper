@@ -1,9 +1,10 @@
 "use client";
-import supabase from "../../../util/supabase/index";
+import supabase from "../../../util/supabase/index.client";
 import { signOut } from "../../actions/index";
 import { SessionContext } from "../../context/SessionContext.client";
 import { useRouter } from "next/navigation";
 import { useState, useContext, useEffect } from "react";
+import { hasUsername } from "../../actions/index";
 import Modal from "../components/Modal/index.client";
 const Home = () => {
   const [signOutError, setSignOutError] = useState<null | string>(null);
@@ -15,11 +16,19 @@ const Home = () => {
   const { session, setSession } = useContext(SessionContext);
   const router = useRouter();
   useEffect(() => {
-    console.log("session1", session);
+    console.log("session: ", session);
     if (session === null) {
       router.replace("/authflow/login");
     } else if (session === "Error") {
       router.replace("/authflow/login");
+    } else {
+      (async () => {
+        if (session.user.email !== undefined) {
+          console.log("email:", session.user.email);
+          const userIsNull = await hasUsername(session.user.email);
+          console.log(userIsNull);
+        }
+      })();
     }
   }, [session]);
   return (

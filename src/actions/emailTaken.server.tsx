@@ -1,5 +1,5 @@
 "use server";
-import supabase from "../../util/supabase/index";
+import supabase from "../../util/supabase/index.client";
 /**
  * @function emailTaken
  * @description Queries public.users to check if the email exists

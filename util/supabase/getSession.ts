@@ -1,4 +1,4 @@
-import supabase from "../supabase/index";
+import supabase from "../supabase/index.client";
 
 /**
  * @deprecated This function is deprecated. Use supabase.auth.getSession() instead in client.

@@ -1,5 +1,5 @@
 "use server";
-import supabase from "../../util/supabase/index";
+import supabase from "../../util/supabase/index.client";
 import { RedirectType, redirect } from "next/navigation";
 
 /**
