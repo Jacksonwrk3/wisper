@@ -1,7 +1,7 @@
 "use client";
 import { signIn, loginWithGoogle } from "@/actions/index";
 import { useState, useContext } from "react";
-import supabase from "../../../../../util/supabase";
+import supabase from "../../../../../util/supabase/index.client";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/context/SessionContext.client";
 import Link from "next/link";

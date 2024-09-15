@@ -1,4 +1,4 @@
-import supabase from "../../util/supabase/index";
+import supabase from "../../util/supabase/index.client";
 /**
  * @function signIn
  * @description Signs in a user with email and password using supabase
